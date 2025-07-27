@@ -102,3 +102,35 @@ network:
 
 ```
 
+
+###✅ Step 4: Apply Configuration
+
+```bash
+sudo netplan apply
+
+```
+
+### ✅ Step 5: Confirm
+```bash
+ip a
+
+```
+
+### And test:
+
+
+```bash
+ping 8.8.8.8
+
+```
+
+
+## NOW ALL DONE
+
+
+
+
+
+
+
+
