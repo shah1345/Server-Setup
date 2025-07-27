@@ -25,7 +25,7 @@ You might see other names like:
 These are valid too. Just **note down the name of the interface that has an `inet` IP address**, as that's your Ethernet interface.
 ### ⚠️ Avoid using loopback (lo) or virtual interfaces (docker0, etc.).
 
-### 🔍 Step 2: List Netplan Files
+### 🔍 Step 1: List Netplan Files
 Run this command to list all .yaml files in the Netplan directory:
 ```bash
 ls /etc/netplan/
@@ -40,3 +40,65 @@ You'll likely see one of the following:
 - `50-cloud-init.yaml`
 
 ✅ This is your current Netplan file.
+
+
+
+### 🧾 Step 2: View the File Content
+Once you identify the filename, for example:
+
+```bash
+sudo nano /etc/netplan/00-installer-config.yaml
+
+```
+
+Or
+
+```bash
+cat /etc/netplan/00-installer-config.yaml
+
+```
+
+✅ Example Output
+You may see something like this:
+
+```bash
+network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses: [192.168.50.100/24]
+      gateway4: 192.168.50.1
+      nameservers:
+        addresses: [8.8.8.8, 1.1.1.1]
+
+
+```
+### Replace enp0s3 with your actual interface name from step 1.
+
+Let's say:
+
+- `Interface name: enp0s3`
+
+- `Static IP: 192.168.50.100`
+
+- `Gateway: 192.168.50.1`
+
+- `DNS: 8.8.8.8 and 1.1.1.1`
+
+### Edit the file like this:
+
+```bash
+network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses: [192.168.50.100/24]
+      gateway4: 192.168.50.1
+      nameservers:
+        addresses: [8.8.8.8, 1.1.1.1]
+
+
+```
+
